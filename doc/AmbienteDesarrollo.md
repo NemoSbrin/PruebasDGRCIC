@@ -1,5 +1,7 @@
 # Ambiente de desarrollo
 
+[:house:](../README.md)
+
 Para la creación de un ambiente de desarrollo, se realiza los siguiente pasos:
 
 1. ejecute [^1]  `py -m pip install --user virtualenv`
@@ -9,7 +11,9 @@ Para la creación de un ambiente de desarrollo, se realiza los siguiente pasos:
 5. cree las [Variables de entorno](#variables-de-entorno)
 6. para desactivar el ambiente ejecute `deactivate`
 
-[:house:](../README.md)
+
+[:arrow_up_small:](#ambiente-de-desarrollo) [:house:](../README.md)
+
 
 [^1]: También se puede usar [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) para crear el ambiente virtual.
 
