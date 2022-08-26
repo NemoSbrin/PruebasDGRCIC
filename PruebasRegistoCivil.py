@@ -33,7 +33,7 @@ with open(file=setDePruebas, mode='r', encoding='utf-8') as file:
 """
 Info = []
 for nui in NUIs:
-    serviceBusquedaPorNui = Cliente.service.BusquedaPorNui(CodigoInstitucion, CodigoAgencia, Usuario, Contrasenia, nui)
+    serviceBusquedaPorNui = Cliente.service.BusquedaPorNui(CodigoInstitucion, CodigoAgencia, Usuario, Contrasenia, nui[:-1])
     Info.append([nui, serviceBusquedaPorNui.CodigoError, serviceBusquedaPorNui.Error])
 
 """ 5. Creación del archivo results.csv.
