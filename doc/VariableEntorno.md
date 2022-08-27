@@ -59,5 +59,8 @@ Las variable que necesitará son:
 
     * Código de agencia porporcionado por la Dirección General de Registro Civil, Identificación y Cedulación del Ecuador.
 
+`TEST_RG_CAMPOS = '['campo1', 'campo2']'`
+
+    * Lista de campos a buscar en el resultado del Client SOAP, esto dependerá de las necesidades de cada uno.
 
 [:arrow_up_small:](#variable-de-entorno) [:house:](../README.md)

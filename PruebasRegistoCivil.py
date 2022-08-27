@@ -10,12 +10,15 @@ Contrasenia = os.environ.get('TEST_RG_PASS')
 CodigoInstitucion = os.environ.get('TEST_RG_CODEINS')
 CodigoAgencia = os.environ.get('TEST_RG_CODEAGN')
 setDePruebas = os.environ.get('TEST_RG_DATATST')
+filtroData = os.environ.get('TEST_RG_CAMPOS').split(';')
+encabezado = os.environ.get('TEST_RG_CAMPOS')+"\n"
 
 msg = f"""\nSe utiliza el usuario {Usuario} con la contraseña {Contrasenia} .
 El código de Institución es {CodigoInstitucion} .
 El código de Agencia es {CodigoAgencia} .
 El link del web service es {URL} .
 El set de pruebas es {setDePruebas} .
+Los datos a obtener son {filtroData} .
 """
 print(msg)
 
@@ -33,13 +36,18 @@ with open(file=setDePruebas, mode='r', encoding='utf-8') as file:
 """
 Info = []
 for nui in NUIs:
-    serviceBusquedaPorNui = Cliente.service.BusquedaPorNui(CodigoInstitucion, CodigoAgencia, Usuario, Contrasenia, nui[:-1])
-    Info.append([nui, serviceBusquedaPorNui.CodigoError, serviceBusquedaPorNui.Error])
+    Nui = nui[:-1]
+    serviceBusquedaPorNui = Cliente.service.BusquedaPorNui(CodigoInstitucion, CodigoAgencia, Usuario, Contrasenia, Nui)
+    aux = ""
+    for info in serviceBusquedaPorNui:
+        if info in filtroData:
+            aux += f"{serviceBusquedaPorNui[info]};"
+    Info.append(aux[:-1]+"\n")
 
 """ 5. Creación del archivo results.csv.
 """
 with open(file='results.csv', mode='w+', encoding='utf-8') as file:
-    file.writelines('NUI; CodigoError; Error\n')
-    for i in Info:
-        file.writelines(f"{i[0][:-1]}; {i[1]}; {i[2]}\n")
+    file.writelines(encabezado)
+    for linea in Info:
+        file.writelines(linea)
 
